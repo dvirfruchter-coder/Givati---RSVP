@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>פלוגה מסייעת - סיירת גבעתי</title>
+
+<style>
+body{
+    font-family: Arial, sans-serif;
+    background:#f4f4f4;
+    margin:0;
+    padding:0;
+}
+
+.container{
+    max-width:800px;
+    margin:auto;
+    background:white;
+    padding:20px;
+}
+
+.banner{
+    width:100%;
+    border-radius:12px;
+}
+
+h1{
+    text-align:center;
+}
+
+.form-group{
+    margin-bottom:15px;
+}
+
+label{
+    display:block;
+    margin-bottom:5px;
+    font-weight:bold;
+}
+
+input,select,textarea{
+    width:100%;
+    padding:10px;
+    box-sizing:border-box;
+}
+
+button{
+    width:100%;
+    padding:15px;
+    background:#7a0f16;
+    color:white;
+    border:none;
+    border-radius:8px;
+    font-size:18px;
+}
+
+.success{
+    display:none;
+    margin-top:20px;
+    padding:15px;
+    background:#dff0d8;
+    border-radius:8px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>פלוגה מסייעת - סיירת גבעתי</h1>
+
+<h2>אירוע הוקרה & בנות זוג</h2>
+
+<p><strong>30.07 | חוות רישפון</strong></p>
+
+<div class="form-group">
+<label>שם מלא *</label>
+<input id="name">
+</div>
+
+<div class="form-group">
+<label>צוות *</label>
+
+<select id="team">
+<option>צוות דגן</option>
+<option>צוות מרציאנו</option>
+<option>צוות לבבי</option>
+<option>צוות מירון</option>
+<option>חפ"ק / מפל"ג</option>
+</select>
+
+</div>
+
+<div class="form-group">
+<label>סטטוס הגעה</label>
+
+<select id="status">
+<option>מגיע לבד</option>
+<option>מגיע +1</option>
+<option>אולי</option>
+<option>לא אגיע</option>
+</select>
+
+</div>
+
+<div class="form-group">
+<label>הערות</label>
+<textarea id="notes"></textarea>
+</div>
+
+<button onclick="submitForm()">
+שלח אישור הגעה
+</button>
+
+<div class="success" id="success">
+תודה! אישור ההגעה התקבל.
+</div>
+
+</div>
+
+<script>
+function submitForm(){
+
+let name=document.getElementById('name').value;
+
+if(name===""){
+alert("נא להזין שם מלא");
+return;
+}
+
+document.getElementById('success').style.display='block';
+
+}
+</script>
+
+</body>
+</html>
