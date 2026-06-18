@@ -4,24 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>אירוע הוקרה & בנות זוג - סיירת גבעתי</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
     <style>
         :root {
             --primary: #521580;
             --primary-light: #7b2cbf;
-            --bg-gradient: linear-gradient(135deg, #240046 0%, #3c096c 50%, #5a189a 100%);
-            --text-main: #333333;
-            --card-bg: rgba(255, 255, 255, 0.95);
+            --white: #ffffff;
+            --glass: rgba(255, 255, 255, 0.95);
         }
 
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Assistant', sans-serif;
         }
 
+        /* רקע דינמי שמשנה צבעים */
         body {
-            background: var(--bg-gradient);
+            background: linear-gradient(-45deg, #240046, #3c096c, #5a189a, #7b2cbf);
             background-size: 400% 400%;
             animation: gradientBG 15s ease infinite;
             min-height: 100vh;
@@ -38,7 +44,7 @@
         }
 
         .container {
-            background: var(--card-bg);
+            background: var(--glass);
             width: 100%;
             max-width: 550px;
             border-radius: 24px;
@@ -46,18 +52,20 @@
             box-shadow: 0 15px 35px rgba(0,0,0,0.3);
             text-align: center;
             backdrop-filter: blur(10px);
+            position: relative;
+            transition: all 0.5s ease;
         }
 
         .logo {
-            max-width: 120px;
-            margin-bottom: 20px;
+            max-width: 110px;
+            margin-bottom: 15px;
             filter: drop-shadow(0px 4px 8px rgba(0,0,0,0.1));
         }
 
         h1 {
             color: var(--primary);
             font-size: 28px;
-            margin-bottom: 8px;
+            margin-bottom: 5px;
             font-weight: 800;
         }
 
@@ -65,18 +73,7 @@
             color: #666;
             font-size: 16px;
             margin-bottom: 30px;
-            position: relative;
-            display: inline-block;
-        }
-
-        .subtitle::after {
-            content: '';
-            display: block;
-            width: 50%;
-            height: 3px;
-            background: var(--primary-light);
-            margin: 8px auto 0;
-            border-radius: 2px;
+            font-weight: 600;
         }
 
         .form-group {
@@ -86,8 +83,8 @@
 
         label {
             display: block;
-            color: var(--text-main);
-            font-weight: 600;
+            color: #333;
+            font-weight: 700;
             margin-bottom: 8px;
             font-size: 15px;
         }
@@ -100,28 +97,28 @@
             font-size: 16px;
             outline: none;
             transition: all 0.3s ease;
-            background: #f9f9f9;
+            background: #fdfdfd;
         }
 
-        input[type="text"]:focus, select:focus, textarea:focus {
+        input:focus, select:focus, textarea:focus {
             border-color: var(--primary-light);
             background: #fff;
-            box-shadow: 0 0 0 4px rgba(123, 44, 191, 0.15);
+            box-shadow: 0 0 0 4px rgba(123, 44, 191, 0.1);
         }
 
-        /* עיצוב כפתורי הרדיו ככרטיסיות חיות */
+        /* עיצוב כרטיסיות אישור הגעה */
         .rsvp-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 12px;
-            margin-top: 5px;
         }
 
         .rsvp-option {
             position: relative;
+            cursor: pointer;
         }
 
-        .rsvp-option input[type="radio"] {
+        .rsvp-option input {
             position: absolute;
             opacity: 0;
             width: 100%;
@@ -131,39 +128,28 @@
         }
 
         .rsvp-card {
-            border: 2px solid #e0e0e0;
+            border: 2px solid #eee;
             border-radius: 12px;
             padding: 15px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 8px;
             background: #fff;
-            transition: all 0.25s ease;
-            font-weight: 600;
+            transition: all 0.3s ease;
+            font-weight: 700;
             color: #555;
         }
 
-        .rsvp-card .icon {
+        .rsvp-card i {
             font-size: 22px;
+            margin-bottom: 8px;
         }
 
-        /* מראה בזמן בחירה */
-        .rsvp-option input[type="radio"]:checked + .rsvp-card {
+        .rsvp-option input:checked + .rsvp-card {
             border-color: var(--primary-light);
-            background: rgba(123, 44, 191, 0.08);
+            background: rgba(123, 44, 191, 0.05);
             color: var(--primary);
             transform: translateY(-2px);
-            box-shadow: 0 5px 12px rgba(123, 44, 191, 0.15);
-        }
-
-        .rsvp-option:hover .rsvp-card {
-            border-color: #b39ddb;
-        }
-
-        textarea {
-            resize: vertical;
-            min-height: 80px;
         }
 
         button {
@@ -176,7 +162,7 @@
             font-size: 18px;
             font-weight: 700;
             cursor: pointer;
-            transition: transform 0.2s, background-color 0.3s;
+            transition: all 0.3s ease;
             margin-top: 15px;
             box-shadow: 0 5px 15px rgba(82, 21, 128, 0.3);
         }
@@ -186,92 +172,112 @@
             transform: translateY(-1px);
         }
 
-        button:active {
-            transform: translateY(1px);
+        /* עמוד תודה */
+        #thankYouMessage {
+            display: none;
+            padding: 40px 0;
         }
 
-        .footer-note {
-            margin-top: 20px;
-            font-size: 12px;
-            color: #888;
+        .success-icon {
+            font-size: 60px;
+            color: #2ecc71;
+            margin-bottom: 20px;
+        }
+
+        .thank-you-title {
+            font-size: 24px;
+            color: var(--primary);
+            font-weight: 800;
+            margin-bottom: 10px;
         }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <img src="https://dvirfruchter-coder.github.io/Givati---RSVP/images/logo.png" alt="לוגו פלוגה ד'" class="logo" onerror="this.style.display='none'">
+<div class="container" id="mainContainer">
     
-    <h1>אירוע הוקרה & בנות זוג</h1>
-    <div class="subtitle">פלוגה מסייעת • סיירת גבעתי</div>
+    <div id="formSection">
+        <img src="images/logo.png" alt="לוגו פלוגה ד'" class="logo">
+        <h1>אירוע הוקרה & בנות זוג</h1>
+        <div class="subtitle">פלוגה מסייעת • סיירת גבעתי</div>
 
-    <form id="rsvpForm">
-        <div class="form-group">
-            <label for="fullName">שם מלא *</label>
-            <input type="text" id="fullName" required placeholder="הקש את שמך">
-        </div>
+        <form action="https://docs.google.com/forms/d/e/1FAIpQLSdpwYgM82G4N_87k2zI2Wcl_jL9i_bVId3b26P-vXj2-r225w/formResponse" 
+              method="POST" 
+              target="hidden_iframe" 
+              onsubmit="handleSubmit()">
+            
+            <div class="form-group">
+                <label>שם מלא *</label>
+                <input type="text" name="entry.1594954005" required placeholder="הקש שם מלא">
+            </div>
 
-        <div class="form-group">
-            <label for="team">צוות *</label>
-            <select id="team" required>
-                <option value="" disabled selected>בחר צוות</option>
-                <option value="dagan">צוות דגן</option>
-                <option value="marciano">צוות מרציאנו</option>
-                <option value="levavi">צוות לבבי</option>
-                <option value="miron">צוות מירון</option>
-                <option value="command">חפ"ק / מפל"ג</option>
-            </select>
-        </div>
+            <div class="form-group">
+                <label>צוות *</label>
+                <select name="entry.2069695666" required>
+                    <option value="" disabled selected>בחר צוות</option>
+                    <option value="צוות דגן">צוות דגן</option>
+                    <option value="צוות מרציאנו">צוות מרציאנו</option>
+                    <option value="צוות לבבי">צוות לבבי</option>
+                    <option value="צוות מירון">צוות מירון</option>
+                    <option value="חפ&quot;ק / מפל&quot;ג">חפ"ק / מפל"ג</option>
+                </select>
+            </div>
 
-        <div class="form-group">
-            <label>אישור הגעה *</label>
-            <div class="rsvp-grid">
-                <div class="rsvp-option">
-                    <input type="radio" name="attendance" value="alone" required>
-                    <div class="rsvp-card">
-                        <span class="icon">🫡</span>
-                        <span>מגיע לבד</span>
-                    </div>
-                </div>
-                <div class="rsvp-option">
-                    <input type="radio" name="attendance" value="plus1">
-                    <div class="rsvp-card">
-                        <span class="icon">❤️</span>
-                        <span>מגיע +1</span>
-                    </div>
-                </div>
-                <div class="rsvp-option">
-                    <input type="radio" name="attendance" value="maybe">
-                    <div class="rsvp-card">
-                        <span class="icon">❓</span>
-                        <span>אולי</span>
-                    </div>
-                </div>
-                <div class="rsvp-option">
-                    <input type="radio" name="attendance" value="no">
-                    <div class="rsvp-card">
-                        <span class="icon">❌</span>
-                        <span>לא אגיע</span>
-                    </div>
+            <div class="form-group">
+                <label>אישור הגעה *</label>
+                <div class="rsvp-grid">
+                    <label class="rsvp-option">
+                        <input type="radio" name="entry.1444370216" value="מגיע לבד" required>
+                        <div class="rsvp-card"><i class="fa-solid fa-user"></i><span>מגיע לבד</span></div>
+                    </label>
+                    <label class="rsvp-option">
+                        <input type="radio" name="entry.1444370216" value="מגיע +1">
+                        <div class="rsvp-card"><i class="fa-solid fa-heart"></i><span>מגיע +1</span></div>
+                    </label>
+                    <label class="rsvp-option">
+                        <input type="radio" name="entry.1444370216" value="אולי">
+                        <div class="rsvp-card"><i class="fa-solid fa-question"></i><span>אולי</span></div>
+                    </label>
+                    <label class="rsvp-option">
+                        <input type="radio" name="entry.1444370216" value="לא אגיע">
+                        <div class="rsvp-card"><i class="fa-solid fa-xmark"></i><span>לא אגיע</span></div>
+                    </label>
                 </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            <label for="foodNotes">הערות לגבי האוכל (אלרגיות / צמחוני / טבעוני)</label>
-            <textarea id="foodNotes" placeholder="אם יש משהו שחשוב שנדע..."></textarea>
-        </div>
+            <div class="form-group">
+                <label>הערות אוכל (אלרגיות / צמחוני)</label>
+                <textarea name="entry.246473180" placeholder="משהו שחשוב שנדע?"></textarea>
+            </div>
 
-        <div class="form-group">
-            <label for="generalNotes">הערות כלליות</label>
-            <textarea id="generalNotes" placeholder="משהו נוסף?"></textarea>
-        </div>
+            <div class="form-group">
+                <label>הערות כלליות</label>
+                <textarea name="entry.454215707" placeholder="הערות נוספות..."></textarea>
+            </div>
 
-        <button type="submit">שלח אישור הגעה</button>
-    </form>
+            <button type="submit">שלח אישור הגעה</button>
+        </form>
+    </div>
 
-    <div class="footer-note">המידע גלוי למנהל האירוע בלבד</div>
+    <div id="thankYouMessage">
+        <i class="fa-solid fa-circle-check success-icon"></i>
+        <div class="thank-you-title">ההרשמה בוצעה בהצלחה!</div>
+        <p>תודה שעדכנת אותנו, ניפגש בקרוב.</p>
+        <p style="margin-top: 20px; font-weight: bold; color: var(--primary);">יחד ננצח! 🫡</p>
+        <img src="images/logo.png" alt="לוגו" style="width: 80px; margin-top: 30px; opacity: 0.5;">
+    </div>
+
 </div>
+
+<iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
+
+<script>
+    function handleSubmit() {
+        // מחליף את הטופס בהודעת תודה
+        document.getElementById('formSection').style.display = 'none';
+        document.getElementById('thankYouMessage').style.display = 'block';
+    }
+</script>
 
 </body>
 </html>
