@@ -7,7 +7,6 @@
 <title>אירוע הוקרה & בנות זוג</title>
 
 <style>
-
 *{
     margin:0;
     padding:0;
@@ -63,7 +62,7 @@ label{
     color:#333;
 }
 
-input,
+input[type="text"],
 select,
 textarea{
     width:100%;
@@ -126,7 +125,6 @@ button:hover{
 }
 
 /* מסך תודה */
-
 #thankYou{
     display:none;
 }
@@ -160,7 +158,6 @@ button:hover{
     margin-top:25px;
     background:#6A1B9A;
 }
-
 </style>
 </head>
 
@@ -182,17 +179,19 @@ button:hover{
 פלוגה מסייעת • סיירת גבעתי
 </div>
 
+<form id="gievatiForm" action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSevRWe1b57G482zC83D6b7Y2aZ6vG9e8_N4FaSzyqfWbFQ/formResponse" method="POST">
+
 <label>שם מלא *</label>
-<input type="text" id="name">
+<input type="text" id="name" name="entry.2065584592" required>
 
 <label>צוות *</label>
-<select id="team">
+<select id="team" name="entry.1293847561" required>
 <option value="">בחר צוות</option>
-<option>צוות דגן</option>
-<option>צוות מרציאנו</option>
-<option>צוות לבבי</option>
-<option>צוות מירון</option>
-<option>חפ"ק / מפל"ג</option>
+<option value="צוות דגן">צוות דגן</option>
+<option value="צוות מרציאנו">צוות מרציאנו</option>
+<option value="צוות לבבי">צוות לבבי</option>
+<option value="צוות מירון">צוות מירון</option>
+<option value="חפ&quot;ק / מפל&quot;ג">חפ"ק / מפל"ג</option>
 </select>
 
 <label>אישור הגעה *</label>
@@ -200,36 +199,38 @@ button:hover{
 <div class="options">
 
 <label class="option">
-<input type="radio" name="attendance" value="מגיע לבד">
+<input type="radio" name="entry.1847562930" value="מגיע לבד" required>
 <div>מגיע לבד</div>
 </label>
 
 <label class="option">
-<input type="radio" name="attendance" value="מגיע +1">
+<input type="radio" name="entry.1847562930" value="מגיע +1">
 <div>מגיע +1</div>
 </label>
 
 <label class="option">
-<input type="radio" name="attendance" value="אולי">
+<input type="radio" name="entry.1847562930" value="אולי">
 <div>אולי</div>
 </label>
 
 <label class="option">
-<input type="radio" name="attendance" value="לא אגיע">
+<input type="radio" name="entry.1847562930" value="לא אגיע">
 <div>לא אגיע</div>
 </label>
 
 </div>
 
 <label>הערות לגבי האוכל</label>
-<textarea id="food"></textarea>
+<textarea id="food" name="entry.582910475"></textarea>
 
 <label>הערות כלליות</label>
-<textarea id="notes"></textarea>
+<textarea id="notes" name="entry.938475621"></textarea>
 
-<button onclick="submitForm()">
+<button type="submit">
 שלח אישור הגעה
 </button>
+
+</form>
 
 <div class="footer">
 המידע גלוי למנהל האירוע בלבד
@@ -266,27 +267,38 @@ button:hover{
 </div>
 
 <script>
+document.getElementById('gievatiForm').addEventListener('submit', function(e) {
+    e.preventDefault();
 
-function submitForm(){
+    let name = document.getElementById("name").value;
+    let team = document.getElementById("team").value;
 
-let name=document.getElementById("name").value;
-let team=document.getElementById("team").value;
+    if(name.trim() === ""){
+        alert("יש להזין שם מלא");
+        return;
+    }
 
-if(name===""){
-alert("יש להזין שם מלא");
-return;
-}
+    if(team === ""){
+        alert("יש לבחור צוות");
+        return;
+    }
 
-if(team===""){
-alert("יש לבחור צוות");
-return;
-}
+    const formData = new FormData(this);
 
-document.getElementById("formSection").style.display="none";
-document.getElementById("thankYou").style.display="block";
-
-}
-
+    fetch(this.action, {
+        method: 'POST',
+        body: formData,
+        mode: 'no-cors'
+    })
+    .then(() => {
+        document.getElementById("formSection").style.display = "none";
+        document.getElementById("thankYou").style.display = "block";
+    })
+    .catch(error => {
+        alert('אופס! היתה שגיאה בתקשורת. אנא נסה שוב.');
+        console.error('Error:', error);
+    });
+});
 </script>
 
 </body>
