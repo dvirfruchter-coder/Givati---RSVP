@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
-
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,135 +8,142 @@
 
 <style>
 
+*{
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
 body{
     margin:0;
-    padding:0;
-    background:#f4f0fa;
-    font-family:Arial,sans-serif;
-    direction:rtl;
+    background:linear-gradient(180deg,#5d2d91,#7e57c2);
+    min-height:100vh;
+    padding:20px;
 }
 
 .container{
     max-width:700px;
     margin:auto;
+}
+
+.card{
     background:white;
-    box-shadow:0 0 15px rgba(0,0,0,0.1);
+    border-radius:24px;
+    padding:30px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.15);
 }
 
-.invitation{
-    width:100%;
-    display:block;
+.logo{
+    text-align:center;
+    margin-bottom:20px;
 }
 
-.content{
-    padding:25px;
+.logo img{
+    width:130px;
 }
 
 h1{
+    text-align:center;
     color:#5d2d91;
-    text-align:right;
-    margin-bottom:25px;
+    margin-bottom:10px;
+}
+
+.subtitle{
+    text-align:center;
+    color:#666;
+    margin-bottom:30px;
 }
 
 label{
     display:block;
     font-weight:bold;
-    margin-top:15px;
-    margin-bottom:5px;
-    color:#333;
+    margin-top:18px;
+    margin-bottom:8px;
 }
 
 input,
 select,
 textarea{
     width:100%;
-    padding:12px;
-    border:1px solid #ccc;
-    border-radius:8px;
+    padding:14px;
+    border:2px solid #e4d8f7;
+    border-radius:12px;
     font-size:16px;
-    box-sizing:border-box;
-    text-align:right;
 }
 
 textarea{
-    min-height:90px;
+    min-height:100px;
 }
 
-.radio-group{
+.options{
     display:grid;
     grid-template-columns:1fr 1fr;
     gap:12px;
     margin-top:10px;
 }
 
-.radio-card{
+.option{
     border:2px solid #ddd;
-    border-radius:10px;
-    padding:15px;
-    cursor:pointer;
+    border-radius:14px;
+    padding:18px;
     text-align:center;
 }
 
-.radio-card:hover{
-    border-color:#7d3cb5;
-}
-
-.radio-card input{
-    width:auto;
+.option:hover{
+    border-color:#7e57c2;
 }
 
 button{
     width:100%;
     margin-top:25px;
-    padding:15px;
+    padding:16px;
     border:none;
-    border-radius:10px;
-    background:#6a1b9a;
+    border-radius:14px;
+    background:#5d2d91;
     color:white;
     font-size:18px;
     cursor:pointer;
 }
 
 button:hover{
-    background:#52167a;
+    background:#45206e;
 }
 
 .success{
     display:none;
     margin-top:20px;
-    background:#e7d8f7;
-    color:#4a148c;
+    background:#ede7f6;
+    color:#45206e;
     padding:15px;
-    border-radius:8px;
+    border-radius:12px;
     text-align:center;
     font-weight:bold;
 }
 
 .footer{
     text-align:center;
-    color:#666;
+    color:#888;
+    margin-top:20px;
     font-size:14px;
-    margin-top:25px;
 }
 
 </style>
-
 </head>
 
 <body>
 
 <div class="container">
 
-<img src="invitation.jpg" class="invitation">
+<div class="card">
 
-<div class="content">
-
-<div style="text-align:center;margin-bottom:20px;">
-    <img src="LOGO.png"
-         alt="סמל הפלוגה"
-         style="width:120px;height:auto;">
+<div class="logo">
+<img src="Logo.png" alt="סמל הפלוגה">
 </div>
-<h1>אישור הגעה לאירוע הוקרה & בנות זוג</h1>
+
+<h1>אירוע הוקרה & בנות זוג</h1>
+
+<div class="subtitle">
+פלוגה מסייעת • סיירת גבעתי
+</div>
 
 <label>שם מלא *</label>
 <input type="text" id="name">
@@ -154,27 +160,27 @@ button:hover{
 
 <label>אישור הגעה *</label>
 
-<div class="radio-group">
+<div class="options">
 
-<label class="radio-card">
+<label class="option">
 <input type="radio" name="attendance" value="מגיע לבד">
 <br><br>
 מגיע לבד
 </label>
 
-<label class="radio-card">
+<label class="option">
 <input type="radio" name="attendance" value="מגיע +1">
 <br><br>
 מגיע +1
 </label>
 
-<label class="radio-card">
+<label class="option">
 <input type="radio" name="attendance" value="אולי">
 <br><br>
 אולי
 </label>
 
-<label class="radio-card">
+<label class="option">
 <input type="radio" name="attendance" value="לא אגיע">
 <br><br>
 לא אגיע
@@ -192,7 +198,7 @@ button:hover{
 שלח אישור הגעה
 </button>
 
-<div id="success" class="success">
+<div class="success" id="success">
 תודה! אישור ההגעה נקלט בהצלחה.
 </div>
 
@@ -212,13 +218,13 @@ const name=document.getElementById('name').value;
 const team=document.getElementById('team').value;
 
 if(!name){
-    alert('יש להזין שם מלא');
-    return;
+alert('יש להזין שם מלא');
+return;
 }
 
 if(!team){
-    alert('יש לבחור צוות');
-    return;
+alert('יש לבחור צוות');
+return;
 }
 
 document.getElementById('success').style.display='block';
@@ -228,5 +234,4 @@ document.getElementById('success').style.display='block';
 </script>
 
 </body>
-
 </html>
