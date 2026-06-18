@@ -4,32 +4,33 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>אישור הגעה - פלוגה מסייעת</title>
+<title>אירוע הוקרה & בנות זוג</title>
 
 <style>
 
 *{
+    margin:0;
+    padding:0;
     box-sizing:border-box;
     font-family:Arial,sans-serif;
 }
 
 body{
-    margin:0;
-    background:linear-gradient(180deg,#5d2d91,#7e57c2);
+    background:linear-gradient(135deg,#4A148C,#7B1FA2,#9575CD);
     min-height:100vh;
     padding:20px;
 }
 
 .container{
-    max-width:700px;
+    max-width:750px;
     margin:auto;
 }
 
 .card{
     background:white;
-    border-radius:24px;
-    padding:30px;
-    box-shadow:0 10px 30px rgba(0,0,0,0.15);
+    border-radius:28px;
+    padding:35px;
+    box-shadow:0 20px 50px rgba(0,0,0,.15);
 }
 
 .logo{
@@ -38,13 +39,14 @@ body{
 }
 
 .logo img{
-    width:130px;
+    width:200px;
+    max-width:100%;
 }
 
 h1{
     text-align:center;
-    color:#5d2d91;
-    margin-bottom:10px;
+    color:#4A148C;
+    margin-bottom:8px;
 }
 
 .subtitle{
@@ -55,9 +57,10 @@ h1{
 
 label{
     display:block;
-    font-weight:bold;
-    margin-top:18px;
     margin-bottom:8px;
+    margin-top:18px;
+    font-weight:bold;
+    color:#333;
 }
 
 input,
@@ -65,8 +68,8 @@ select,
 textarea{
     width:100%;
     padding:14px;
-    border:2px solid #e4d8f7;
-    border-radius:12px;
+    border:2px solid #E1BEE7;
+    border-radius:14px;
     font-size:16px;
 }
 
@@ -77,53 +80,85 @@ textarea{
 .options{
     display:grid;
     grid-template-columns:1fr 1fr;
-    gap:12px;
+    gap:14px;
     margin-top:10px;
 }
 
 .option{
-    border:2px solid #ddd;
-    border-radius:14px;
-    padding:18px;
+    border:2px solid #DDD;
+    border-radius:16px;
+    padding:20px;
     text-align:center;
+    cursor:pointer;
+    transition:.2s;
 }
 
 .option:hover{
-    border-color:#7e57c2;
+    border-color:#7B1FA2;
+    background:#F7F0FF;
+}
+
+.option input{
+    margin-bottom:10px;
 }
 
 button{
     width:100%;
-    margin-top:25px;
     padding:16px;
+    margin-top:25px;
     border:none;
-    border-radius:14px;
-    background:#5d2d91;
+    border-radius:16px;
+    background:#6A1B9A;
     color:white;
     font-size:18px;
     cursor:pointer;
 }
 
 button:hover{
-    background:#45206e;
-}
-
-.success{
-    display:none;
-    margin-top:20px;
-    background:#ede7f6;
-    color:#45206e;
-    padding:15px;
-    border-radius:12px;
-    text-align:center;
-    font-weight:bold;
+    background:#4A148C;
 }
 
 .footer{
+    margin-top:20px;
     text-align:center;
     color:#888;
-    margin-top:20px;
     font-size:14px;
+}
+
+/* מסך תודה */
+
+#thankYou{
+    display:none;
+}
+
+.thankyou-card{
+    background:white;
+    border-radius:28px;
+    padding:50px 30px;
+    text-align:center;
+    box-shadow:0 20px 50px rgba(0,0,0,.15);
+}
+
+.thankyou-card img{
+    width:220px;
+    margin-bottom:20px;
+}
+
+.thankyou-card h2{
+    color:#4A148C;
+    margin-bottom:15px;
+    font-size:32px;
+}
+
+.thankyou-card p{
+    color:#555;
+    line-height:1.8;
+    font-size:18px;
+}
+
+.back-btn{
+    margin-top:25px;
+    background:#6A1B9A;
 }
 
 </style>
@@ -133,10 +168,12 @@ button:hover{
 
 <div class="container">
 
+<div id="formSection">
+
 <div class="card">
 
 <div class="logo">
-<img src="Logo.png" alt="סמל הפלוגה">
+<img src="Logo.png" alt="לוגו הפלוגה">
 </div>
 
 <h1>אירוע הוקרה & בנות זוג</h1>
@@ -164,26 +201,22 @@ button:hover{
 
 <label class="option">
 <input type="radio" name="attendance" value="מגיע לבד">
-<br><br>
-מגיע לבד
+<div>מגיע לבד</div>
 </label>
 
 <label class="option">
 <input type="radio" name="attendance" value="מגיע +1">
-<br><br>
-מגיע +1
+<div>מגיע +1</div>
 </label>
 
 <label class="option">
 <input type="radio" name="attendance" value="אולי">
-<br><br>
-אולי
+<div>אולי</div>
 </label>
 
 <label class="option">
 <input type="radio" name="attendance" value="לא אגיע">
-<br><br>
-לא אגיע
+<div>לא אגיע</div>
 </label>
 
 </div>
@@ -198,12 +231,34 @@ button:hover{
 שלח אישור הגעה
 </button>
 
-<div class="success" id="success">
-תודה! אישור ההגעה נקלט בהצלחה.
+<div class="footer">
+המידע גלוי למנהל האירוע בלבד
 </div>
 
-<div class="footer">
-הנתונים גלויים למנהל האירוע בלבד
+</div>
+
+</div>
+
+<div id="thankYou">
+
+<div class="thankyou-card">
+
+<img src="Logo.png" alt="לוגו הפלוגה">
+
+<h2>תודה!</h2>
+
+<p>
+אישור ההגעה התקבל בהצלחה.
+<br><br>
+נתראה באירוע ההוקרה של
+<br>
+פלוגה מסייעת – סיירת גבעתי
+</p>
+
+<button class="back-btn" onclick="location.reload()">
+חזרה לטופס
+</button>
+
 </div>
 
 </div>
@@ -214,20 +269,21 @@ button:hover{
 
 function submitForm(){
 
-const name=document.getElementById('name').value;
-const team=document.getElementById('team').value;
+let name=document.getElementById("name").value;
+let team=document.getElementById("team").value;
 
-if(!name){
-alert('יש להזין שם מלא');
+if(name===""){
+alert("יש להזין שם מלא");
 return;
 }
 
-if(!team){
-alert('יש לבחור צוות');
+if(team===""){
+alert("יש לבחור צוות");
 return;
 }
 
-document.getElementById('success').style.display='block';
+document.getElementById("formSection").style.display="none";
+document.getElementById("thankYou").style.display="block";
 
 }
 
