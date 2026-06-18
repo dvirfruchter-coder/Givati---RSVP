@@ -1,305 +1,277 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>אירוע הוקרה & בנות זוג - סיירת גבעתי</title>
+    <style>
+        :root {
+            --primary: #521580;
+            --primary-light: #7b2cbf;
+            --bg-gradient: linear-gradient(135deg, #240046 0%, #3c096c 50%, #5a189a 100%);
+            --text-main: #333333;
+            --card-bg: rgba(255, 255, 255, 0.95);
+        }
 
-<title>אירוע הוקרה & בנות זוג</title>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
 
-<style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial,sans-serif;
-}
+        body {
+            background: var(--bg-gradient);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
 
-body{
-    background:linear-gradient(135deg,#4A148C,#7B1FA2,#9575CD);
-    min-height:100vh;
-    padding:20px;
-}
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
 
-.container{
-    max-width:750px;
-    margin:auto;
-}
+        .container {
+            background: var(--card-bg);
+            width: 100%;
+            max-width: 550px;
+            border-radius: 24px;
+            padding: 40px 30px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
 
-.card{
-    background:white;
-    border-radius:28px;
-    padding:35px;
-    box-shadow:0 20px 50px rgba(0,0,0,.15);
-}
+        .logo {
+            max-width: 120px;
+            margin-bottom: 20px;
+            filter: drop-shadow(0px 4px 8px rgba(0,0,0,0.1));
+        }
 
-.logo{
-    text-align:center;
-    margin-bottom:20px;
-}
+        h1 {
+            color: var(--primary);
+            font-size: 28px;
+            margin-bottom: 8px;
+            font-weight: 800;
+        }
 
-.logo img{
-    width:200px;
-    max-width:100%;
-}
+        .subtitle {
+            color: #666;
+            font-size: 16px;
+            margin-bottom: 30px;
+            position: relative;
+            display: inline-block;
+        }
 
-h1{
-    text-align:center;
-    color:#4A148C;
-    margin-bottom:8px;
-}
+        .subtitle::after {
+            content: '';
+            display: block;
+            width: 50%;
+            height: 3px;
+            background: var(--primary-light);
+            margin: 8px auto 0;
+            border-radius: 2px;
+        }
 
-.subtitle{
-    text-align:center;
-    color:#666;
-    margin-bottom:30px;
-}
+        .form-group {
+            text-align: right;
+            margin-bottom: 22px;
+        }
 
-label{
-    display:block;
-    margin-bottom:8px;
-    margin-top:18px;
-    font-weight:bold;
-    color:#333;
-}
+        label {
+            display: block;
+            color: var(--text-main);
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 15px;
+        }
 
-input[type="text"],
-select,
-textarea{
-    width:100%;
-    padding:14px;
-    border:2px solid #E1BEE7;
-    border-radius:14px;
-    font-size:16px;
-}
+        input[type="text"], select, textarea {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            font-size: 16px;
+            outline: none;
+            transition: all 0.3s ease;
+            background: #f9f9f9;
+        }
 
-textarea{
-    min-height:100px;
-}
+        input[type="text"]:focus, select:focus, textarea:focus {
+            border-color: var(--primary-light);
+            background: #fff;
+            box-shadow: 0 0 0 4px rgba(123, 44, 191, 0.15);
+        }
 
-.options{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:14px;
-    margin-top:10px;
-}
+        /* עיצוב כפתורי הרדיו ככרטיסיות חיות */
+        .rsvp-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-top: 5px;
+        }
 
-.option{
-    border:2px solid #DDD;
-    border-radius:16px;
-    padding:20px;
-    text-align:center;
-    cursor:pointer;
-    transition:.2s;
-}
+        .rsvp-option {
+            position: relative;
+        }
 
-.option:hover{
-    border-color:#7B1FA2;
-    background:#F7F0FF;
-}
+        .rsvp-option input[type="radio"] {
+            position: absolute;
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+            z-index: 2;
+        }
 
-.option input{
-    margin-bottom:10px;
-}
+        .rsvp-card {
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            background: #fff;
+            transition: all 0.25s ease;
+            font-weight: 600;
+            color: #555;
+        }
 
-button{
-    width:100%;
-    padding:16px;
-    margin-top:25px;
-    border:none;
-    border-radius:16px;
-    background:#6A1B9A;
-    color:white;
-    font-size:18px;
-    cursor:pointer;
-}
+        .rsvp-card .icon {
+            font-size: 22px;
+        }
 
-button:hover{
-    background:#4A148C;
-}
+        /* מראה בזמן בחירה */
+        .rsvp-option input[type="radio"]:checked + .rsvp-card {
+            border-color: var(--primary-light);
+            background: rgba(123, 44, 191, 0.08);
+            color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 12px rgba(123, 44, 191, 0.15);
+        }
 
-.footer{
-    margin-top:20px;
-    text-align:center;
-    color:#888;
-    font-size:14px;
-}
+        .rsvp-option:hover .rsvp-card {
+            border-color: #b39ddb;
+        }
 
-/* מסך תודה */
-#thankYou{
-    display:none;
-}
+        textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
 
-.thankyou-card{
-    background:white;
-    border-radius:28px;
-    padding:50px 30px;
-    text-align:center;
-    box-shadow:0 20px 50px rgba(0,0,0,.15);
-}
+        button {
+            width: 100%;
+            padding: 16px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: transform 0.2s, background-color 0.3s;
+            margin-top: 15px;
+            box-shadow: 0 5px 15px rgba(82, 21, 128, 0.3);
+        }
 
-.thankyou-card img{
-    width:220px;
-    margin-bottom:20px;
-}
+        button:hover {
+            background: var(--primary-light);
+            transform: translateY(-1px);
+        }
 
-.thankyou-card h2{
-    color:#4A148C;
-    margin-bottom:15px;
-    font-size:32px;
-}
+        button:active {
+            transform: translateY(1px);
+        }
 
-.thankyou-card p{
-    color:#555;
-    line-height:1.8;
-    font-size:18px;
-}
-
-.back-btn{
-    margin-top:25px;
-    background:#6A1B9A;
-}
-</style>
+        .footer-note {
+            margin-top: 20px;
+            font-size: 12px;
+            color: #888;
+        }
+    </style>
 </head>
-
 <body>
 
 <div class="container">
+    <img src="https://dvirfruchter-coder.github.io/Givati---RSVP/images/logo.png" alt="לוגו פלוגה ד'" class="logo" onerror="this.style.display='none'">
+    
+    <h1>אירוע הוקרה & בנות זוג</h1>
+    <div class="subtitle">פלוגה מסייעת • סיירת גבעתי</div>
 
-<div id="formSection">
+    <form id="rsvpForm">
+        <div class="form-group">
+            <label for="fullName">שם מלא *</label>
+            <input type="text" id="fullName" required placeholder="הקש את שמך">
+        </div>
 
-<div class="card">
+        <div class="form-group">
+            <label for="team">צוות *</label>
+            <select id="team" required>
+                <option value="" disabled selected>בחר צוות</option>
+                <option value="dagan">צוות דגן</option>
+                <option value="marciano">צוות מרציאנו</option>
+                <option value="levavi">צוות לבבי</option>
+                <option value="miron">צוות מירון</option>
+                <option value="command">חפ"ק / מפל"ג</option>
+            </select>
+        </div>
 
-<div class="logo">
-<img src="Logo.png" alt="לוגו הפלוגה">
+        <div class="form-group">
+            <label>אישור הגעה *</label>
+            <div class="rsvp-grid">
+                <div class="rsvp-option">
+                    <input type="radio" name="attendance" value="alone" required>
+                    <div class="rsvp-card">
+                        <span class="icon">🫡</span>
+                        <span>מגיע לבד</span>
+                    </div>
+                </div>
+                <div class="rsvp-option">
+                    <input type="radio" name="attendance" value="plus1">
+                    <div class="rsvp-card">
+                        <span class="icon">❤️</span>
+                        <span>מגיע +1</span>
+                    </div>
+                </div>
+                <div class="rsvp-option">
+                    <input type="radio" name="attendance" value="maybe">
+                    <div class="rsvp-card">
+                        <span class="icon">❓</span>
+                        <span>אולי</span>
+                    </div>
+                </div>
+                <div class="rsvp-option">
+                    <input type="radio" name="attendance" value="no">
+                    <div class="rsvp-card">
+                        <span class="icon">❌</span>
+                        <span>לא אגיע</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="foodNotes">הערות לגבי האוכל (אלרגיות / צמחוני / טבעוני)</label>
+            <textarea id="foodNotes" placeholder="אם יש משהו שחשוב שנדע..."></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="generalNotes">הערות כלליות</label>
+            <textarea id="generalNotes" placeholder="משהו נוסף?"></textarea>
+        </div>
+
+        <button type="submit">שלח אישור הגעה</button>
+    </form>
+
+    <div class="footer-note">המידע גלוי למנהל האירוע בלבד</div>
 </div>
-
-<h1>אירוע הוקרה & בנות זוג</h1>
-
-<div class="subtitle">
-פלוגה מסייעת • סיירת גבעתי
-</div>
-
-<form id="gievatiForm" action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSevRWe1b57G482zC83D6b7Y2aZ6vG9e8_N4FaSzyqfWbFQ/formResponse" method="POST">
-
-<label>שם מלא *</label>
-<input type="text" id="name" name="entry.2065584592" required>
-
-<label>צוות *</label>
-<select id="team" name="entry.1293847561" required>
-<option value="">בחר צוות</option>
-<option value="צוות דגן">צוות דגן</option>
-<option value="צוות מרציאנו">צוות מרציאנו</option>
-<option value="צוות לבבי">צוות לבבי</option>
-<option value="צוות מירון">צוות מירון</option>
-<option value="חפ&quot;ק / מפל&quot;ג">חפ"ק / מפל"ג</option>
-</select>
-
-<label>אישור הגעה *</label>
-
-<div class="options">
-
-<label class="option">
-<input type="radio" name="entry.1847562930" value="מגיע לבד" required>
-<div>מגיע לבד</div>
-</label>
-
-<label class="option">
-<input type="radio" name="entry.1847562930" value="מגיע +1">
-<div>מגיע +1</div>
-</label>
-
-<label class="option">
-<input type="radio" name="entry.1847562930" value="אולי">
-<div>אולי</div>
-</label>
-
-<label class="option">
-<input type="radio" name="entry.1847562930" value="לא אגיע">
-<div>לא אגיע</div>
-</label>
-
-</div>
-
-<label>הערות לגבי האוכל</label>
-<textarea id="food" name="entry.582910475"></textarea>
-
-<label>הערות כלליות</label>
-<textarea id="notes" name="entry.938475621"></textarea>
-
-<button type="submit">
-שלח אישור הגעה
-</button>
-
-</form>
-
-<div class="footer">
-המידע גלוי למנהל האירוע בלבד
-</div>
-
-</div>
-
-</div>
-
-<div id="thankYou">
-
-<div class="thankyou-card">
-
-<img src="Logo.png" alt="לוגו הפלוגה">
-
-<h2>תודה!</h2>
-
-<p>
-אישור ההגעה התקבל בהצלחה.
-<br><br>
-נתראה באירוע ההוקרה של
-<br>
-פלוגה מסייעת – סיירת גבעתי
-</p>
-
-<button class="back-btn" onclick="location.reload()">
-חזרה לטופס
-</button>
-
-</div>
-
-</div>
-
-</div>
-
-<script>
-document.getElementById('gievatiForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-
-    let name = document.getElementById("name").value;
-    let team = document.getElementById("team").value;
-
-    if(name.trim() === ""){
-        alert("יש להזין שם מלא");
-        return;
-    }
-
-    if(team === ""){
-        alert("יש לבחור צוות");
-        return;
-    }
-
-    const formData = new FormData(this);
-
-    fetch(this.action, {
-        method: 'POST',
-        body: formData,
-        mode: 'no-cors'
-    })
-    .then(() => {
-        document.getElementById("formSection").style.display = "none";
-        document.getElementById("thankYou").style.display = "block";
-    })
-    .catch(error => {
-        alert('אופס! היתה שגיאה בתקשורת. אנא נסה שוב.');
-        console.error('Error:', error);
-    });
-});
-</script>
 
 </body>
 </html>
