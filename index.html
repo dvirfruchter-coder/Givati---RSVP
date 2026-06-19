@@ -8,7 +8,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <style>
         :root {
@@ -152,7 +151,7 @@
             font-size: 32px;
         }
 
-        /* צבעי סימון כרטיסיות */
+        /* אפקטים וצבעים בסימון כרטיסיות */
         .rsvp-option input[value="מגיע לבד"]:checked + .rsvp-card {
             border-color: #4cc9f0;
             background: rgba(76, 201, 240, 0.08);
@@ -196,9 +195,8 @@
             transform: translateY(-2px);
         }
 
-        /* עמוד תודה מוסתר כברירת מחדל */
         #thankYouMessage {
-            display: none;
+            display: none !important; 
             padding: 40px 10px;
         }
 
@@ -232,7 +230,7 @@
 
 <div class="container" id="mainContainer">
     
-    <div id="formSection">
+    <div id="formSection" style="display: block;">
         <div class="logo-container">
             <img src="Logo.png" alt="לוגו פלוגה ד'" class="logo">
         </div>
@@ -246,13 +244,13 @@
             
             <div class="form-group">
                 <label>שם מלא *</label>
-                <input type="text" name="entry.1594954005" required placeholder="הקש שם מלא">
+                <input type="text" name="entry.1020084478" required placeholder="הקש שם מלא">
             </div>
 
             <div class="form-group">
                 <label>צוות *</label>
-                <select name="entry.2069695666" required>
-                    <option value="" disabled selected>בחר צוות</option>
+                <select name="entry.28911032" required>
+                    <option value="" disabled selected>bחר צוות</option>
                     <option value="צוות דגן">צוות דגן</option>
                     <option value="צוות מרציאנו">צוות מרציאנו</option>
                     <option value="צוות לבבי">צוות לבבי</option>
@@ -265,19 +263,19 @@
                 <label>אישור הגעה *</label>
                 <div class="rsvp-grid">
                     <label class="rsvp-option">
-                        <input type="radio" name="entry.1444370216" value="מגיע לבד" required>
+                        <input type="radio" name="entry.1504953723" value="מגיע לבד" required>
                         <div class="rsvp-card"><span class="icon">🫡</span><span>מגיע לבד</span></div>
                     </label>
                     <label class="rsvp-option">
-                        <input type="radio" name="entry.1444370216" value="מגיע +1">
+                        <input type="radio" name="entry.1504953723" value="מגיע +1">
                         <div class="rsvp-card"><span class="icon">❤️</span><span>מגיע +1</span></div>
                     </label>
                     <label class="rsvp-option">
-                        <input type="radio" name="entry.1444370216" value="אולי">
+                        <input type="radio" name="entry.1504953723" value="אולי">
                         <div class="rsvp-card"><span class="icon">❓</span><span>אולי</span></div>
                     </label>
                     <label class="rsvp-option">
-                        <input type="radio" name="entry.1444370216" value="לא אגיע">
+                        <input type="radio" name="entry.1504953723" value="לא אגיע">
                         <div class="rsvp-card"><span class="icon">❌</span><span>לא אגיע</span></div>
                     </label>
                 </div>
@@ -285,12 +283,12 @@
 
             <div class="form-group">
                 <label>הערות אוכל (אלרגיות / צמחוני)</label>
-                <textarea name="entry.246473180" placeholder="משהו שחשוב שנדע לקראת האירוע?"></textarea>
+                <textarea name="entry.454228303" placeholder="משהו שחשוב שנדע לקראת האירוע?"></textarea>
             </div>
 
             <div class="form-group">
                 <label>הערות כלליות</label>
-                <textarea name="entry.454215707" placeholder="הערות או בקשות נוספות..."></textarea>
+                <textarea name="entry.1226068305" placeholder="הערות או בקשות נוספות..."></textarea>
             </div>
 
             <button type="submit">שלח אישור הגעה</button>
@@ -312,7 +310,8 @@
 <script>
     function handleSubmit() {
         document.getElementById('formSection').style.display = 'none';
-        document.getElementById('thankYouMessage').style.display = 'block';
+        const thankYou = document.getElementById('thankYouMessage');
+        thankYou.style.setProperty('display', 'block', 'important');
     }
 </script>
 
