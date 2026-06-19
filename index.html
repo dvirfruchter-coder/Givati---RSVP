@@ -8,14 +8,18 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     
     <style>
         :root {
-            --primary: #521580;
-            --primary-light: #7b2cbf;
-            --white: #ffffff;
-            --glass: rgba(255, 255, 255, 0.95);
+            --purple-deep: #240046;
+            --purple-main: #3c096c;
+            --purple-light: #5a189a;
+            --purple-bright: #7b2cbf;
+            --purple-accent: #9d4edd;
+            --gold: #ffb703;
+            --gold-hover: #fb8500;
+            --text-dark: #212529;
+            --glass-bg: rgba(255, 255, 255, 0.96);
         }
 
         * {
@@ -25,11 +29,11 @@
             font-family: 'Assistant', sans-serif;
         }
 
-        /* רקע דינמי שמשנה צבעים */
+        /* רקע סגול חי ודינמי */
         body {
-            background: linear-gradient(-45deg, #240046, #3c096c, #5a189a, #7b2cbf);
+            background: linear-gradient(-45deg, var(--purple-deep), var(--purple-main), var(--purple-light), var(--purple-bright));
             background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
+            animation: gradientBG 12s ease infinite;
             min-height: 100vh;
             display: flex;
             justify-content: center;
@@ -44,73 +48,86 @@
         }
 
         .container {
-            background: var(--glass);
+            background: var(--glass-bg);
             width: 100%;
-            max-width: 550px;
-            border-radius: 24px;
-            padding: 40px 30px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+            max-width: 580px;
+            border-radius: 28px;
+            padding: 40px 35px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
             text-align: center;
-            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.5);
             position: relative;
-            transition: all 0.5s ease;
+        }
+
+        /* סמל הפלוגה - גדול ובולט בראש העמוד */
+        .logo-container {
+            margin-bottom: 25px;
         }
 
         .logo {
-            max-width: 110px;
-            margin-bottom: 15px;
-            filter: drop-shadow(0px 4px 8px rgba(0,0,0,0.1));
+            width: 140px; /* גודל מודגש בראש העמוד */
+            height: auto;
+            filter: drop-shadow(0px 8px 16px rgba(0,0,0,0.15));
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
         }
 
         h1 {
-            color: var(--primary);
-            font-size: 28px;
-            margin-bottom: 5px;
+            color: var(--purple-main);
+            font-size: 32px;
+            margin-bottom: 6px;
             font-weight: 800;
+            letter-spacing: -0.5px;
         }
 
         .subtitle {
-            color: #666;
-            font-size: 16px;
-            margin-bottom: 30px;
-            font-weight: 600;
+            color: var(--purple-bright);
+            font-size: 18px;
+            margin-bottom: 35px;
+            font-weight: 700;
+            letter-spacing: 1px;
         }
 
         .form-group {
             text-align: right;
-            margin-bottom: 22px;
+            margin-bottom: 24px;
         }
 
         label {
             display: block;
-            color: #333;
-            font-weight: 700;
-            margin-bottom: 8px;
-            font-size: 15px;
+            color: var(--purple-deep);
+            font-weight: 800;
+            margin-bottom: 10px;
+            font-size: 16px;
         }
 
         input[type="text"], select, textarea {
             width: 100%;
-            padding: 14px 16px;
-            border: 2px solid #e0e0e0;
-            border-radius: 12px;
+            padding: 16px;
+            border: 2px solid #e2e8f0;
+            border-radius: 14px;
             font-size: 16px;
             outline: none;
             transition: all 0.3s ease;
-            background: #fdfdfd;
+            background: #f8fafc;
+            color: var(--text-dark);
+            font-weight: 600;
         }
 
         input:focus, select:focus, textarea:focus {
-            border-color: var(--primary-light);
+            border-color: var(--purple-bright);
             background: #fff;
-            box-shadow: 0 0 0 4px rgba(123, 44, 191, 0.1);
+            box-shadow: 0 0 0 4px rgba(123, 44, 191, 0.15);
         }
 
-        /* עיצוב כרטיסיות אישור הגעה */
+        /* גריד כרטיסיות אישור הגעה צבעוניות וחיות */
         .rsvp-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
+            gap: 14px;
         }
 
         .rsvp-option {
@@ -128,67 +145,125 @@
         }
 
         .rsvp-card {
-            border: 2px solid #eee;
-            border-radius: 12px;
-            padding: 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 20px 15px;
             display: flex;
             flex-direction: column;
             align-items: center;
+            gap: 10px;
             background: #fff;
-            transition: all 0.3s ease;
-            font-weight: 700;
-            color: #555;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            font-weight: 800;
+            font-size: 16px;
         }
 
-        .rsvp-card i {
-            font-size: 22px;
-            margin-bottom: 8px;
+        /* אייקונים בעיצוב אימוג'י גדול וחי */
+        .rsvp-card .icon {
+            font-size: 32px;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
         }
 
-        .rsvp-option input:checked + .rsvp-card {
-            border-color: var(--primary-light);
-            background: rgba(123, 44, 191, 0.05);
-            color: var(--primary);
+        /* צבעים ייחודיים לכל כרטיסייה בזמן בחירה (Active States) */
+        .rsvp-option input[value="מגיע לבד"]:checked + .rsvp-card {
+            border-color: #4cc9f0;
+            background: rgba(76, 201, 240, 0.08);
+            color: #03045e;
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(76, 201, 240, 0.2);
+        }
+
+        .rsvp-option input[value="מגיע +1"]:checked + .rsvp-card {
+            border-color: #f72585;
+            background: rgba(247, 37, 133, 0.08);
+            color: #7209b7;
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(247, 37, 133, 0.2);
+        }
+
+        .rsvp-option input[value="אולי"]:checked + .rsvp-card {
+            border-color: #ffb703;
+            background: rgba(255, 183, 3, 0.08);
+            color: #ffb703;
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(255, 183, 3, 0.2);
+        }
+
+        .rsvp-option input[value="לא אגיע"]:checked + .rsvp-card {
+            border-color: #e63946;
+            background: rgba(230, 57, 70, 0.08);
+            color: #e63946;
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(230, 57, 70, 0.2);
+        }
+
+        .rsvp-option:hover .rsvp-card {
             transform: translateY(-2px);
+            border-color: var(--purple-accent);
         }
 
+        /* כפתור שליחה יוקרתי בצבע זהב */
         button {
             width: 100%;
-            padding: 16px;
-            background: var(--primary);
-            color: white;
+            padding: 18px;
+            background: linear-gradient(135deg, var(--gold), var(--gold-hover));
+            color: var(--purple-deep);
             border: none;
-            border-radius: 12px;
-            font-size: 18px;
-            font-weight: 700;
+            border-radius: 14px;
+            font-size: 20px;
+            font-weight: 800;
             cursor: pointer;
             transition: all 0.3s ease;
             margin-top: 15px;
-            box-shadow: 0 5px 15px rgba(82, 21, 128, 0.3);
+            box-shadow: 0 6px 20px rgba(251, 133, 0, 0.3);
         }
 
         button:hover {
-            background: var(--primary-light);
-            transform: translateY(-1px);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(251, 133, 0, 0.4);
         }
 
-        /* עמוד תודה */
+        button:active {
+            transform: translateY(1px);
+        }
+
+        /* עמוד תודה חגיגי */
         #thankYouMessage {
             display: none;
-            padding: 40px 0;
+            padding: 40px 10px;
+            animation: fadeIn 0.6s ease forwards;
         }
 
-        .success-icon {
-            font-size: 60px;
-            color: #2ecc71;
-            margin-bottom: 20px;
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .success-badge {
+            width: 90px;
+            height: 90px;
+            background: #2ecc71;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 45px;
+            margin: 0 auto 25px;
+            box-shadow: 0 8px 20px rgba(46, 204, 113, 0.3);
         }
 
         .thank-you-title {
-            font-size: 24px;
-            color: var(--primary);
+            font-size: 28px;
+            color: var(--purple-main);
             font-weight: 800;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
+        }
+
+        .thank-you-p {
+            font-size: 18px;
+            color: #4a5568;
+            line-height: 1.6;
         }
     </style>
 </head>
@@ -197,7 +272,9 @@
 <div class="container" id="mainContainer">
     
     <div id="formSection">
-        <img src="images/logo.png" alt="לוגו פלוגה ד'" class="logo">
+        <div class="logo-container">
+            <img src="Logo.png" alt="לוגו פלוגה ד'" class="logo">
+        </div>
         <h1>אירוע הוקרה & בנות זוג</h1>
         <div class="subtitle">פלוגה מסייעת • סיירת גבעתי</div>
 
@@ -228,31 +305,31 @@
                 <div class="rsvp-grid">
                     <label class="rsvp-option">
                         <input type="radio" name="entry.1444370216" value="מגיע לבד" required>
-                        <div class="rsvp-card"><i class="fa-solid fa-user"></i><span>מגיע לבד</span></div>
+                        <div class="rsvp-card"><span class="icon">🫡</span><span>מגיע לבד</span></div>
                     </label>
                     <label class="rsvp-option">
                         <input type="radio" name="entry.1444370216" value="מגיע +1">
-                        <div class="rsvp-card"><i class="fa-solid fa-heart"></i><span>מגיע +1</span></div>
+                        <div class="rsvp-card"><span class="icon">❤️</span><span>מגיע +1</span></div>
                     </label>
                     <label class="rsvp-option">
                         <input type="radio" name="entry.1444370216" value="אולי">
-                        <div class="rsvp-card"><i class="fa-solid fa-question"></i><span>אולי</span></div>
+                        <div class="rsvp-card"><span class="icon">❓</span><span>אולי</span></div>
                     </label>
                     <label class="rsvp-option">
                         <input type="radio" name="entry.1444370216" value="לא אגיע">
-                        <div class="rsvp-card"><i class="fa-solid fa-xmark"></i><span>לא אגיע</span></div>
+                        <div class="rsvp-card"><span class="icon">❌</span><span>לא אגיע</span></div>
                     </label>
                 </div>
             </div>
 
             <div class="form-group">
                 <label>הערות אוכל (אלרגיות / צמחוני)</label>
-                <textarea name="entry.246473180" placeholder="משהו שחשוב שנדע?"></textarea>
+                <textarea name="entry.246473180" placeholder="משהו שחשוב שנדע לקראת האירוע?"></textarea>
             </div>
 
             <div class="form-group">
                 <label>הערות כלליות</label>
-                <textarea name="entry.454215707" placeholder="הערות נוספות..."></textarea>
+                <textarea name="entry.454215707" placeholder="הערות או בקשות נוספות..."></textarea>
             </div>
 
             <button type="submit">שלח אישור הגעה</button>
@@ -260,11 +337,11 @@
     </div>
 
     <div id="thankYouMessage">
-        <i class="fa-solid fa-circle-check success-icon"></i>
+        <div class="success-badge">✓</div>
         <div class="thank-you-title">ההרשמה בוצעה בהצלחה!</div>
-        <p>תודה שעדכנת אותנו, ניפגש בקרוב.</p>
-        <p style="margin-top: 20px; font-weight: bold; color: var(--primary);">יחד ננצח! 🫡</p>
-        <img src="images/logo.png" alt="לוגו" style="width: 80px; margin-top: 30px; opacity: 0.5;">
+        <p class="thank-you-p">תודה שעדכנת אותנו. המידע הועבר למנהל האירוע.</p>
+        <p class="thank-you-p" style="margin-top: 25px; font-weight: 800; color: var(--purple-bright); font-size: 20px;">יחד ננצח! 🫡</p>
+        <img src="Logo.png" alt="לוגו" style="width: 100px; margin-top: 35px; opacity: 0.8; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1));">
     </div>
 
 </div>
@@ -273,9 +350,10 @@
 
 <script>
     function handleSubmit() {
-        // מחליף את הטופס בהודעת תודה
+        // מעבר חלק אינטראקטיבי בין הטופס לעמוד התודה
         document.getElementById('formSection').style.display = 'none';
         document.getElementById('thankYouMessage').style.display = 'block';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 </script>
 
