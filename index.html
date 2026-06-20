@@ -195,7 +195,7 @@
         }
 
         #thankYouMessage {
-            display: none; 
+            display: none !important; 
             padding: 40px 10px;
         }
 
@@ -230,7 +230,7 @@
 
 <div class="container" id="mainContainer">
     
-    <div id="formSection">
+    <div id="formSection" style="display: block;">
         <div class="logo-container">
             <img src="Logo.png" alt="לוגו פלוגה ד'" class="logo">
         </div>
@@ -244,12 +244,12 @@
             
             <div class="form-group">
                 <label>שם מלא *</label>
-                <input type="text" name="entry.1465225407" required placeholder="הקש שם מלא">
+                <input type="text" name="entry.179424378" required placeholder="הקש שם מלא">
             </div>
 
             <div class="form-group">
                 <label>צוות *</label>
-                <select name="entry.1764669865" required>
+                <select name="entry.510889501" required>
                     <option value="" disabled selected>בחר צוות</option>
                     <option value="צוות דגן">צוות דגן</option>
                     <option value="צוות מרציאנו">צוות מרציאנו</option>
@@ -263,19 +263,19 @@
                 <label>אישור הגעה *</label>
                 <div class="rsvp-grid">
                     <label class="rsvp-option">
-                        <input type="radio" name="entry.1011603511" value="מגיע לבד" required>
+                        <input type="radio" name="entry.629294585" value="מגיע לבד" required>
                         <div class="rsvp-card"><span class="icon">🫡</span><span>מגיע לבד</span></div>
                     </label>
                     <label class="rsvp-option">
-                        <input type="radio" name="entry.1011603511" value="מגיע +1">
+                        <input type="radio" name="entry.629294585" value="מגיע +1">
                         <div class="rsvp-card"><span class="icon">❤️</span><span>מגיע +1</span></div>
                     </label>
                     <label class="rsvp-option">
-                        <input type="radio" name="entry.1011603511" value="אולי">
+                        <input type="radio" name="entry.629294585" value="אולי">
                         <div class="rsvp-card"><span class="icon">❓</span><span>אולי</span></div>
                     </label>
                     <label class="rsvp-option">
-                        <input type="radio" name="entry.1011603511" value="לא אגיע">
+                        <input type="radio" name="entry.629294585" value="לא אגיע">
                         <div class="rsvp-card"><span class="icon">❌</span><span>לא אגיע</span></div>
                     </label>
                 </div>
@@ -283,12 +283,12 @@
 
             <div class="form-group">
                 <label>הערות אוכל (אלרגיות / צמחוני)</label>
-                <textarea name="entry.2066804595" placeholder="משהו שחשוב שנדע לקראת האירוע?"></textarea>
+                <textarea name="entry.390542709" placeholder="משהו שחשוב שנדע לקראת האירוע?"></textarea>
             </div>
 
             <div class="form-group">
                 <label>הערות כלליות</label>
-                <textarea name="entry.1215707738" placeholder="הערות או בקשות נוספות..."></textarea>
+                <textarea name="entry.1279019257" placeholder="הערות או בקשות נוספות..."></textarea>
             </div>
 
             <button type="submit">שלח אישור הגעה</button>
@@ -310,7 +310,8 @@
 <script>
     function handleSubmit() {
         document.getElementById('formSection').style.display = 'none';
-        document.getElementById('thankYouMessage').style.display = 'block';
+        const thankYou = document.getElementById('thankYouMessage');
+        thankYou.style.setProperty('display', 'block', 'important');
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 </script>
